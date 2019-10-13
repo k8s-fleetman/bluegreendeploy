@@ -1,22 +1,20 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: default-host-routing
+  name: weighted-ingress
   namespace: default
+  annotations:
+      traefik.ingress.kubernetes.io/service-weights: |
+          nginx-green: 70%
+          nginx-blue: 30%
 spec:
-  backend:
-    serviceName: nginx-default
-    servicePort: 80
   rules:
-  - host: blue.eqslearning.com
-    http:
-      paths:
-      - backend:
-          serviceName: nginx-blue
-          servicePort: 80
-  - host: green.eqslearning.com
+  - host: weighted.eqslearning.com
     http:
       paths:
       - backend:
           serviceName: nginx-green
+          servicePort: 80
+      - backend:
+          serviceName: nginx-blue
           servicePort: 80
