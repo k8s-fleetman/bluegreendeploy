@@ -20,7 +20,7 @@ pipeline {
             sh 'kubectl apply -f nginx-blue.yaml'
          }
       }
-       stage('Deploy Default or pervious version') {
+      stage('Deploy Default or pervious version') {
          steps {
             sh 'cat nginx-blue.yaml'
             sh 'kubectl apply -f nginx-default.yaml'
@@ -28,8 +28,8 @@ pipeline {
       }     
       stage('Roll back the deploy') {
          steps {
-            sh 'cat blueonprod.yaml'
-            sh 'kubectl apply -f blueonprod.yaml'
+            sh 'default-ingress.yaml'
+            sh 'kubectl apply -f default-ingress.yaml'
          }
       }
    }
