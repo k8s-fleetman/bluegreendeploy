@@ -1,5 +1,8 @@
 pipeline {
    agent any
+   environment {
+     SERVICE_NAME = "deploytypes"
+   }
    stages {
       stage('Preparation') {
          steps {
