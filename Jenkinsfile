@@ -20,16 +20,10 @@ pipeline {
             sh 'kubectl apply -f nginx-blue.yaml'
          }
       }
-      stage('Deploy default') {
-         steps {
-            sh 'cat nginx-default.yaml'
-            sh 'kubectl apply -f nginx-default.yaml'
-         }
-      }      
       stage('Canary release setup') {
          steps {
             sh 'cat canary-ingress.yaml'
-            sh 'kubectl apply -f default-ingress.yaml'
+            sh 'kubectl apply -f canary-ingress.yaml'
          }
       }
    }
