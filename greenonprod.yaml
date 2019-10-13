@@ -2,9 +2,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: default-host-routing
+  namespace: default
 spec:
   backend:
-    serviceName: nginx-green
+    serviceName: nginx-default
     servicePort: 80
   rules:
   - host: blue.eqslearning.com
