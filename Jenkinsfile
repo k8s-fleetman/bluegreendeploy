@@ -23,7 +23,7 @@ pipeline {
       
       stage('Roll back the deploy') {
          steps {
-            sh 'default-ingress.yaml'
+            sh 'cat canary-ingress.yaml'
             sh 'kubectl apply -f canary-ingress.yaml'
          }
       }
