@@ -7,17 +7,17 @@ pipeline {
             git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
-      stage('Switch default site to green') {
+      stage('Deploy Green OR A version') {
          steps {
-            sh 'cat greenonprod.yaml'
-            sh 'kubectl apply -f greenonprod.yaml'
+            sh 'cat nginx-green.yaml'
+            sh 'kubectl apply -f nginx-green.yaml'
          }
       }
 
       stage('Update the Canaray release setup') {
          steps {
-            sh 'cat canary-ingress.yaml'
-            sh 'kubectl apply -f canary-ingress.yaml'
+            sh 'cat greenonprod.yaml'
+            sh 'kubectl apply -f greenonprod.yaml'
          }
       }
    }
