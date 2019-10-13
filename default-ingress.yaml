@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   backend:
-    serviceName: nginx-default
+    serviceName: nginx-green
     servicePort: 80
   rules:
   - host: blue.eqslearning.com
