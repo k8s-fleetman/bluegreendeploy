@@ -23,11 +23,16 @@ pipeline {
             sh 'kubectl apply -f nginx-blue.yaml'
          }
       }
-      
-      stage('Update GREEN version on Production') {
+      stage('Deploy default or previous version') {
          steps {
-            sh 'cat greenonprod.yaml'
-            sh 'kubectl apply -f blueonprod.yaml'
+            sh 'cat nginx-default.yaml'
+            sh 'kubectl apply -f nginx-default.yaml'
+         }
+      }      
+      stage('Configure Routing') {
+         steps {
+            sh 'cat default-ingress.yaml'
+            sh 'kubectl apply -f default-ingress.yaml'
          }
       }
    }
