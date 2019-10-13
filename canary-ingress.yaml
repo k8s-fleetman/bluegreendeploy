@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: weighted-ingress
+  namespace: default
   annotations:
       traefik.ingress.kubernetes.io/service-weights: |
           nginx-green: 70%
