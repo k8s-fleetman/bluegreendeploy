@@ -21,7 +21,7 @@ pipeline {
          }
       }
       
-      stage('Roll back the deploy') {
+      stage('Canary release setup') {
          steps {
             sh 'cat canary-ingress.yaml'
             sh 'kubectl apply -f canary-ingress.yaml'
