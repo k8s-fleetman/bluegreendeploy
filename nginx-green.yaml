@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-green
+  labels:
+    app.kubernetes.io/name: nginx-green
+    app.kubernetes.io/part-of: nginx-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx-green
+      app.kubernetes.io/part-of: nginx-green
+  template:
+    metadata:
+      namespace: default
+      labels:
+        app.kubernetes.io/name: nginx-green
+        app.kubernetes.io/part-of: nginx-green
+    spec:
+      containers:
+      - name: nginx-green
+        image: nginxdemos/hello:0.1
+        ports:
+        - containerPort: 80
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: COLOR
+          value: green
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-green
+  namespace: default
+  labels:
+    app.kubernetes.io/name: nginx-green
+    app.kubernetes.io/part-of: nginx-green
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app.kubernetes.io/name: nginx-green
+    app.kubernetes.io/part-of: nginx-green
