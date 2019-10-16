@@ -32,7 +32,7 @@ pipeline {
       stage('Configure Routing') {
          steps {
             sh 'cat default-ingress.yaml'
-            sh 'kubectl apply -f default-ingress.yaml'
+            sh 'kubectl apply -f blueonprod.yaml'
          }
       }
    }
