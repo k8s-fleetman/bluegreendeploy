@@ -32,6 +32,7 @@ pipeline {
          steps {
             sh 'cat default-ingress.yaml'
             sh 'kubectl apply -f default-ingress.yaml'
+            sh 'kubectl apply -f canary-ingress.yaml'
          }
       }
    }
