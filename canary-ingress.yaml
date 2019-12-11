@@ -9,7 +9,7 @@ metadata:
           nginx-blue: 30%
 spec:
   rules:
-  - host: weighted.eqslearning.com
+  - host: canary.eqslearning.com
     http:
       paths:
       - backend:
