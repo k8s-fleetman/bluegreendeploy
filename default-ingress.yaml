@@ -20,3 +20,9 @@ spec:
       - backend:
           serviceName: nginx-green
           servicePort: 80
+  - host: eqslearning.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-default
+          servicePort: 80
